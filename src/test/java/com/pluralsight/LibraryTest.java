@@ -1,16 +1,14 @@
 package com.pluralsight;
 
 import com.pluralsight.model.Book;
-import jakarta.ws.rs.core.Application;
-import jakarta.ws.rs.core.HttpHeaders;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.*;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class LibraryTest extends JerseyTest {
 
@@ -30,7 +28,9 @@ public class LibraryTest extends JerseyTest {
         assertEquals("Http Response should be 200: ", Response.Status.OK.getStatusCode(), response.getStatus());
         assertEquals("Http Content-Type should be: ", MediaType.APPLICATION_JSON, response.getHeaderString(HttpHeaders.CONTENT_TYPE));
 
-        Book returnBook = response.readEntity(Book.class);
-        assertNotNull("Content of response is: ", returnBook);
+        List<Book> books = response.readEntity(new GenericType<List<Book>>() {});
+
+        assertNotNull("Content of response is: ", books);
+        assertTrue("Content of response is: ", books.size() > 0);
     }
 }

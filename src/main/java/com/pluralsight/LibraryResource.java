@@ -6,6 +6,9 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Root resource (exposed at "myresource" path)
  */
@@ -20,10 +23,15 @@ public class LibraryResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Book getIt() {
+    public List<Book> getIt() {
+        List<Book> books = new ArrayList<>();
+
         Book basicBook = new Book();
         basicBook.setId(1L);
         basicBook.setName("Book of knowledge");
-        return basicBook;
+
+        books.add(basicBook);
+
+        return books;
     }
 }
