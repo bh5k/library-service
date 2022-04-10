@@ -1,9 +1,7 @@
 package com.pluralsight;
 
 import com.pluralsight.model.Book;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
 /**
@@ -18,12 +16,13 @@ public class LibraryResource {
      *
      * @return String that will be returned as a text/plain response.
      */
-    @GET
+
     @Produces(MediaType.APPLICATION_JSON)
-    public Book getIt() {
-        Book basicBook = new Book();
-        basicBook.setId(1L);
-        basicBook.setName("Book of knowledge");
-        return basicBook;
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Book post(Book book) {
+
+        System.out.println("Book posted in: " + book);
+
+        return book;
     }
 }
