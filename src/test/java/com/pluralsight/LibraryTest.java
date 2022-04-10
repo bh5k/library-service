@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import com.pluralsight.model.Book;
+import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
@@ -20,10 +21,14 @@ public class LibraryTest extends JerseyTest {
     }
 
     @Test
-    public void testBasicGetRetrieve() {
+    public void testPut() {
+        Book book = new Book();
+        book.setName("A different book");
+        book.setId(2L);
+
         Response response = target("/library")
                 .request(MediaType.APPLICATION_JSON)
-                .get();
+                .put(Entity.entity(book, MediaType.APPLICATION_JSON));
 
 
 
