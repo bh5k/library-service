@@ -22,6 +22,7 @@ public class LibraryTest extends JerseyTest {
     @Test
     public void testBasicGetRetrieve() {
         Response response = target("/library")
+                .path(String.valueOf(0))
                 .request(MediaType.APPLICATION_JSON)
                 .get();
 
