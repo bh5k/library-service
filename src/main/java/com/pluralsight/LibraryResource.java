@@ -1,10 +1,7 @@
 package com.pluralsight;
 
 import com.pluralsight.model.Book;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.PUT;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
 /**
@@ -19,12 +16,11 @@ public class LibraryResource {
      *
      * @return String that will be returned as a text/plain response.
      */
-    @PUT
+    @Path("{id}")
+    @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Book putIt(Book book) {
-
-        System.out.println(book);
-
-        return book;
+    public void deleteIt(@PathParam("id") Integer id) {
+        System.out.println(id);
     }
 }

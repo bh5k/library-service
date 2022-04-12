@@ -22,20 +22,13 @@ public class LibraryTest extends JerseyTest {
 
     @Test
     public void testPut() {
-        Book book = new Book();
-        book.setName("A different book");
-        book.setId(2L);
 
         Response response = target("/library")
+                .path(String.valueOf(1))
                 .request(MediaType.APPLICATION_JSON)
-                .put(Entity.entity(book, MediaType.APPLICATION_JSON));
-
-
+                .delete();
 
         assertEquals("Http Response should be 200: ", Response.Status.OK.getStatusCode(), response.getStatus());
         assertEquals("Http Content-Type should be: ", MediaType.APPLICATION_JSON, response.getHeaderString(HttpHeaders.CONTENT_TYPE));
-
-        Book returnBook = response.readEntity(Book.class);
-        assertNotNull("Content of response is: ", returnBook);
     }
 }
