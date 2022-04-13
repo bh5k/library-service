@@ -17,6 +17,7 @@ public class LibraryResource {
      * @return String that will be returned as a text/plain response.
      */
 
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Book post(Book book) {
